@@ -1,0 +1,89 @@
+---
+title: "conditional_loops"
+format: html
+editor: visual
+execute: 
+  warning: false
+---
+
+```{r}
+library(tidyverse)
+
+```
+
+## Conditional Loops Task 1
+
+```{r}
+pm2_5 <- 48
+
+if (pm2_5 < 100) {
+  print("Low to moderate risk")
+} else if (pm2_5 <= 100 & pm2_5 < 150){
+  print("Unhealthy for sensitive groups") 
+  } else if (pm2_5 >= 150) {
+      print("Health risk present")
+}
+
+```
+
+## Task 2
+
+```{r}
+species <- " blue whale"
+
+if (str_detect(species, "whale")) {
+  print("You found a whale!")
+} 
+
+```
+
+## Task 3
+
+```{r}
+base_burrito <- 6.50
+main_ingredient <- "veggie"
+
+if (str_detect(main_ingredient, "veggie")) {
+  print(base_burrito) 
+ }   else if (str_detect(main_ingredient, "chicken")) {
+  print(base_burrito + 3) 
+  } else if (str_detect(main_ingredient, "steak")) {
+  print(base_burrito + 3.25) 
+} 
+
+```
+
+```{r}
+base_burrito <- 6.50
+main_ingredient <- "chicken"
+
+if (str_detect(main_ingredient, "veggie")) {
+  print(base_burrito) 
+ }   else if (str_detect(main_ingredient, "chicken")) {
+  print(base_burrito + 3) 
+  } else if (str_detect(main_ingredient, "steak")) {
+  print(base_burrito + 3.25) 
+} 
+
+```
+
+## For Loops
+
+```{r}
+fish <- c(8, 10, 12, 23)
+
+for (i in seq_along(fish)) {
+  proportion_fish = fish[i] / sum(fish)
+  print(proportion_fish)
+}
+  
+```
+
+```{r}
+month.name
+  
+for (i in seq_along(month.name)) {
+  print(paste(month.name[i], "is month", i))
+  }
+
+```
