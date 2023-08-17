@@ -19,6 +19,8 @@ toolik_biochem <- read_csv(here("data", "2011_Kling_Akchem.csv"), na = c(".", "N
 ```
 
 ```{r}
+# Create a subset of the data that contains only observations from the “Toolik Inlet” site, and that only contains the variables (columns) for pH, dissolved organic carbon (DOC), and total dissolved nitrogen (TDN) (hint: see dplyr::select()). Store this subset as inlet_biochem. Make sure to look at the subset you’ve created.
+
 inlet_biochem <- toolik_biochem %>% 
   filter(site == "Toolik Inlet" ) %>% 
   select(p_h, doc_u_m, tdn_u_m) %>% 
@@ -30,9 +32,30 @@ inlet_biochem <- toolik_biochem %>%
 ```
 
 ```{r}
+#apply function used on inlet_biochem dataset, columns, using the mean, and NA values are able to be removed
+
 apply(inlet_biochem, 2, mean, na.rm = TRUE)
 ```
 
 ```{r}
+# use across() to find means of columns in dataset where columns are numeric values
 
+inlet_biochem %>% 
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+```
+
+```{r}
+# Write a for loop from scratch to calculate the mean for each
+p_h <- inlet_biochem$p_h
+
+for (i in seq_along(p_h)) {
+  mean_p_h = mean(p_h[[i]], na.rm = TRUE)
+  print(mean_p_h)
+}
+```
+
+```{r}
+#use map_df() to calculate the man of each column in inlet_biochem dataframe
+
+purrr::map_df(.x = inlet_biochem, .f = mean, na.rm = TRUE)
 ```
